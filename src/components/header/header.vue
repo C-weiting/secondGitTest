@@ -37,14 +37,18 @@
           <div class="star-wrapper">
             <star :size="48" :score="seller.score"></star>
           </div>
-          <div class="detail-title">
-            <div class="line border-1px"></div>
-            <div class="text">优惠信息</div>
-            <div class="line border-1px"></div>
-          </div>
+          <line-title title="优惠信息"></line-title>
+          <ul class="supports">
+            <li v-if="seller.supports" v-for="item in seller.supports" :key="item.type">
+              <span class="icon" :class="classMap[item.type]"></span>
+              <span class="text">{{item.description}}</span>
+            </li>
+          </ul>
+          <line-title title="优惠信息"></line-title>
+          <p>{{seller.bulletin}}</p>
         </div>
       </div>
-      <div class="detail-close">
+      <div class="detail-close" @click="detailShow = false">
         <i class="icon-close"></i>
       </div>
     </div>
@@ -52,6 +56,7 @@
 </template>
 <script>
 import Star from '../star/star'
+import LineTitle from '../line-title/LineTitle'
 export default {
   props: {
     seller: {
@@ -59,7 +64,8 @@ export default {
     }
   },
   components: {
-    Star
+    Star,
+    LineTitle
   },
   data () {
     return {
@@ -194,6 +200,7 @@ export default {
       overflow auto
       z-index 100
       background rgba(7, 17, 27, 0.8)
+      backdrop-filter blur(10px)
       .detail-wrapper
         width 100%
         min-height 100%
@@ -209,19 +216,43 @@ export default {
             margin-top 18px
             padding 2px 0
             text-align center
-          .detail-title
+          .supports
             width 80%
-            display flex
-            margin 28px auto 24px
-            .line
-              flex 1
-              height 0
-              margin-top 7px
-              border-1px(rgba(255, 255, 255, 0.2))
-            .text
+            margin 0 auto
+            li
+              margin-bottom 12px
               padding 0 12px
-              font-size 14px
-              font-weight bold
+              font-size: 0
+              &:last-child
+                margin-bottom 0
+              .icon
+                display inline-block
+                vertical-align top
+                width 16px
+                height 16px
+                margin-right 6px
+                background-size 16px 16px
+                background-repeat no-repeat
+                &.decrease
+                  bg-image('decrease_2')
+                &.discount
+                  bg-image('discount_2')
+                &.guarantee
+                  bg-image('guarantee_2')
+                &.invoice
+                  bg-image('invoice_2')
+                &.special
+                  bg-image('special_2')
+              .text
+                line-height 16px
+                font-size 12px
+          p
+            width 80%
+            font-size 12px
+            line-height 24px
+            padding 0 12px
+            box-sizing border-box
+            margin 0 auto
       .detail-close
         position relative
         width 32px
