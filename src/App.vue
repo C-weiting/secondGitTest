@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import vHeader from './components/header/header'
+import vHeader from './components/header/Header'
 import './common/stylus/fonts/style.css'
 import './common/stylus/index'
 export default {

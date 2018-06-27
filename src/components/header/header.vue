@@ -13,7 +13,9 @@
           {{seller.description}}/{{seller.deliveryTime}}分钟送达
         </div>
         <div v-if="seller.supports" class="supports">
-          <span class="icon" :class="classMap[seller.supports[0].type]"></span>
+          <span class="icon-wrapper">
+            <icon :iconType="seller.supports[0].type" :size="1"></icon>
+          </span>
           <span class="text">{{seller.supports[0].description}}</span>
         </div>
       </div>
@@ -30,34 +32,40 @@
     <div class="background">
       <img :src="seller.avatar" width="100%">
     </div>
-    <div class="detail" v-show="detailShow">
-      <div class="detail-wrapper clearfix">
-        <div class="datail-main">
-          <h1>{{seller.name}}</h1>
-          <div class="star-wrapper">
-            <star :size="48" :score="seller.score"></star>
+    <transition name="slide-fade">
+      <div class="detail" v-show="detailShow">
+        <div class="detail-wrapper clearfix">
+          <div class="datail-main">
+            <h1>{{seller.name}}</h1>
+            <div class="star-wrapper">
+              <star :size="48" :score="seller.score"></star>
+            </div>
+            <line-title title="优惠信息"></line-title>
+            <ul class="supports">
+              <li v-if="seller.supports" v-for="item in seller.supports" :key="item.type">
+                <span class="icon-wrapper">
+                  <icon :iconType="item.type" :size="2"></icon>
+                </span>
+                <span class="text">{{item.description}}</span>
+              </li>
+            </ul>
+            <line-title title="优惠信息"></line-title>
+            <p>{{seller.bulletin}}</p>
           </div>
-          <line-title title="优惠信息"></line-title>
-          <ul class="supports">
-            <li v-if="seller.supports" v-for="item in seller.supports" :key="item.type">
-              <span class="icon" :class="classMap[item.type]"></span>
-              <span class="text">{{item.description}}</span>
-            </li>
-          </ul>
-          <line-title title="优惠信息"></line-title>
-          <p>{{seller.bulletin}}</p>
+        </div>
+        <div class="detail-close" @click="detailShow = false">
+          <i class="icon-close"></i>
         </div>
       </div>
-      <div class="detail-close" @click="detailShow = false">
-        <i class="icon-close"></i>
-      </div>
-    </div>
+    </transition>
   </div>
 </template>
 <script>
-import Star from '../star/star'
+import Star from '../star/Star'
 import LineTitle from '../line-title/LineTitle'
+import Icon from '../icon/Icon'
 export default {
+  name: 'vheader',
   props: {
     seller: {
       type: Object
@@ -65,15 +73,13 @@ export default {
   },
   components: {
     Star,
-    LineTitle
+    LineTitle,
+    Icon
   },
   data () {
     return {
       detailShow: false
     }
-  },
-  created () {
-    this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
   },
   methods: {
     showDetail () {
@@ -83,7 +89,7 @@ export default {
 }
 </script>
 <style lang="stylus">
-@import '../../common/stylus/mixin'
+  @import '../../common/stylus/mixin'
   .header
     position relative
     color #ffffff
@@ -109,7 +115,7 @@ export default {
             height 18px
             display inline-block
             vertical-align top
-            bg-image('brand')
+            bg-image('./images/brand')
             background-size 30px 18px
             background-repeat no-repeat
           .name
@@ -120,24 +126,12 @@ export default {
         .description
           margin-bottom 10px
         .supports
-          .icon
+          .icon-wrapper
             display inline-block
             vertical-align top
             width 10px
             height 10px
             margin-right 4px
-            background-size 10px 10px
-            background-repeat no-repeat
-            &.decrease
-              bg-image('decrease_1')
-            &.discount
-              bg-image('discount_1')
-            &.guarantee
-              bg-image('guarantee_1')
-            &.invoice
-              bg-image('invoice_1')
-            &.special
-              bg-image('special_1')
           .text
             line-height 12px
             font-size 10px
@@ -172,7 +166,7 @@ export default {
         vertical-align top
         width 22px
         height 12px
-        bg-image('bulletin')
+        bg-image('./images/bulletin')
         background-size 22px 12px
         background-repeat no-repeat
       .bulletin-text
@@ -225,24 +219,12 @@ export default {
               font-size: 0
               &:last-child
                 margin-bottom 0
-              .icon
+              .icon-wrapper
                 display inline-block
                 vertical-align top
                 width 16px
                 height 16px
                 margin-right 6px
-                background-size 16px 16px
-                background-repeat no-repeat
-                &.decrease
-                  bg-image('decrease_2')
-                &.discount
-                  bg-image('discount_2')
-                &.guarantee
-                  bg-image('guarantee_2')
-                &.invoice
-                  bg-image('invoice_2')
-                &.special
-                  bg-image('special_2')
               .text
                 line-height 16px
                 font-size 12px
