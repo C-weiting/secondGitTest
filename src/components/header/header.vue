@@ -76,170 +76,233 @@ export default {
     LineTitle,
     Icon
   },
-  data () {
+  data() {
     return {
       detailShow: false
     }
   },
   methods: {
-    showDetail () {
+    showDetail() {
       this.detailShow = true
     }
   }
 }
 </script>
 <style lang="stylus">
-  @import '../../common/stylus/mixin'
-  .header
-    position relative
-    color #ffffff
-    overflow hidden
-    background rgba(7, 17, 27, 0.5)
-    .content-wrapper
-      position relative
-      padding 24px 12px 18px 24px
-      font-size 0px
-      .avatar
-        display inline-block
-        vertical-align top
-        img
-          border-radius 2px
-      .content
-        display inline-block
-        font-size 12px
-        margin-left 16px
-        .title
-          margin 2px 0 8px
-          .brand
-            width 30px
-            height 18px
-            display inline-block
-            vertical-align top
-            bg-image('./images/brand')
-            background-size 30px 18px
-            background-repeat no-repeat
-          .name
-            margin-left 6px
-            font-size 16px
-            font-weight bold
-            line-height 18px
-        .description
-          margin-bottom 10px
-        .supports
-          .icon-wrapper
-            display inline-block
-            vertical-align top
-            width 10px
-            height 10px
-            margin-right 4px
-          .text
-            line-height 12px
-            font-size 10px
-      .support-count
-        position absolute
-        right 12px
-        bottom 18px
-        height 24px
-        line-height 24px
-        padding 7px 8px
-        border-radius 14px
-        background rgba(0, 0, 0, 0.2)
-        text-align center
-        .count
-          font-size 10px
-        .icon-keyboard_arrow_right
-          margin-left 2px
-          line-height 24px
-          font-size 10px
-    .bulletin-wrapper
-      position relative
-      height 28px
-      line-height 28px
-      padding 0 22px 0 12px
-      white-space nowrap
-      overflow hidden
-      text-overflow ellipsis
-      background rgba(7, 17, 27, 0.2)
-      .bulletin-title
-        display inline-block
-        margin-top 8px
-        vertical-align top
-        width 22px
-        height 12px
-        bg-image('./images/bulletin')
-        background-size 22px 12px
-        background-repeat no-repeat
-      .bulletin-text
-        vertical-align top
-        margin 0 4px
-        font-size 10px
-      .icon-keyboard_arrow_right
-        position absolute
-        font-size 10px
-        right 12px
-        top 8px
-    .background
-      position absolute
-      top 0
-      left 0
-      z-index -1
-      width 100%
-      filter blur(10px)
-    .detail
-      position fixed
-      width 100%
-      height 100%
-      top 0
-      left 0
-      overflow auto
-      z-index 100
-      background rgba(7, 17, 27, 0.8)
-      backdrop-filter blur(10px)
-      .detail-wrapper
-        width 100%
-        min-height 100%
-        .datail-main
-          margin-top 64px
-          padding-bottom 64px
-          h1
-            text-align center
-            font-size 16px
-            line-height 16px
-            font-weight 700
-          .star-wrapper
-            margin-top 18px
-            padding 2px 0
-            text-align center
-          .supports
-            width 80%
-            margin 0 auto
-            li
-              margin-bottom 12px
-              padding 0 12px
-              font-size: 0
-              &:last-child
-                margin-bottom 0
-              .icon-wrapper
-                display inline-block
-                vertical-align top
-                width 16px
-                height 16px
-                margin-right 6px
-              .text
-                line-height 16px
-                font-size 12px
-          p
-            width 80%
-            font-size 12px
-            line-height 24px
-            padding 0 12px
-            box-sizing border-box
-            margin 0 auto
-      .detail-close
-        position relative
-        width 32px
-        height 32px
-        margin -64px auto 0 auto
-        clear both
-        font-size 32px
+@import '../../common/stylus/mixin';
+
+.header {
+  position: relative;
+  color: #ffffff;
+  overflow: hidden;
+  background: rgba(7, 17, 27, 0.5);
+
+  .content-wrapper {
+    position: relative;
+    padding: 24px 12px 18px 24px;
+    font-size: 0px;
+
+    .avatar {
+      display: inline-block;
+      vertical-align: top;
+
+      img {
+        border-radius: 2px;
+      }
+    }
+
+    .content {
+      display: inline-block;
+      font-size: 12px;
+      margin-left: 16px;
+
+      .title {
+        margin: 2px 0 8px;
+
+        .brand {
+          width: 30px;
+          height: 18px;
+          display: inline-block;
+          vertical-align: top;
+          bg-image('./images/brand');
+          background-size: 30px 18px;
+          background-repeat: no-repeat;
+        }
+
+        .name {
+          margin-left: 6px;
+          font-size: 16px;
+          font-weight: bold;
+          line-height: 18px;
+        }
+      }
+
+      .description {
+        margin-bottom: 10px;
+      }
+
+      .supports {
+        .icon-wrapper {
+          display: inline-block;
+          vertical-align: top;
+          width: 10px;
+          height: 10px;
+          margin-right: 4px;
+        }
+
+        .text {
+          line-height: 12px;
+          font-size: 10px;
+        }
+      }
+    }
+
+    .support-count {
+      position: absolute;
+      right: 12px;
+      bottom: 18px;
+      height: 24px;
+      line-height: 24px;
+      padding: 7px 8px;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.2);
+      text-align: center;
+
+      .count {
+        font-size: 10px;
+      }
+
+      .icon-keyboard_arrow_right {
+        margin-left: 2px;
+        line-height: 24px;
+        font-size: 10px;
+      }
+    }
+  }
+
+  .bulletin-wrapper {
+    position: relative;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 22px 0 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: rgba(7, 17, 27, 0.2);
+
+    .bulletin-title {
+      display: inline-block;
+      margin-top: 8px;
+      vertical-align: top;
+      width: 22px;
+      height: 12px;
+      bg-image('./images/bulletin');
+      background-size: 22px 12px;
+      background-repeat: no-repeat;
+    }
+
+    .bulletin-text {
+      vertical-align: top;
+      margin: 0 4px;
+      font-size: 10px;
+    }
+
+    .icon-keyboard_arrow_right {
+      position: absolute;
+      font-size: 10px;
+      right: 12px;
+      top: 8px;
+    }
+  }
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    filter: blur(10px);
+  }
+
+  .detail {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    z-index: 100;
+    background: rgba(7, 17, 27, 0.8);
+    backdrop-filter: blur(10px);
+
+    .detail-wrapper {
+      width: 100%;
+      min-height: 100%;
+
+      .datail-main {
+        margin-top: 64px;
+        padding-bottom: 64px;
+
+        h1 {
+          text-align: center;
+          font-size: 16px;
+          line-height: 16px;
+          font-weight: 700;
+        }
+
+        .star-wrapper {
+          margin-top: 18px;
+          padding: 2px 0;
+          text-align: center;
+        }
+
+        .supports {
+          width: 80%;
+          margin: 0 auto;
+
+          li {
+            margin-bottom: 12px;
+            padding: 0 12px;
+            font-size: 0;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            .icon-wrapper {
+              display: inline-block;
+              vertical-align: top;
+              width: 16px;
+              height: 16px;
+              margin-right: 6px;
+            }
+
+            .text {
+              line-height: 16px;
+              font-size: 12px;
+            }
+          }
+        }
+
+        p {
+          width: 80%;
+          font-size: 12px;
+          line-height: 24px;
+          padding: 0 12px;
+          box-sizing: border-box;
+          margin: 0 auto;
+        }
+      }
+    }
+
+    .detail-close {
+      position: relative;
+      width: 32px;
+      height: 32px;
+      margin: -64px auto 0 auto;
+      clear: both;
+      font-size: 32px;
+    }
+  }
+}
 </style>
